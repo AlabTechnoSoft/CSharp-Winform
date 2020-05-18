@@ -1,0 +1,97 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace User_Login_Page
+{
+    public partial class UserLogin : Form
+    {
+        public UserLogin()
+        {
+            InitializeComponent();
+        }
+
+        private void UserLogin_Load(object sender, EventArgs e)
+        {
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath(); //SignIn
+            gp.AddEllipse(0, 0, Image_LogIn.Width - 3, Image_LogIn.Height - 3);
+            Region rg = new Region(gp);
+            Image_LogIn.Region = rg;
+
+            System.Drawing.Drawing2D.GraphicsPath gp_New = new System.Drawing.Drawing2D.GraphicsPath(); //SignUp
+            gp_New.AddEllipse(0, 0, Image_SignIn.Width - 3, Image_SignIn.Height - 3);
+            Region rg_New = new Region(gp);
+            Image_SignIn.Region = rg_New;
+        }
+
+        private void bunifuImageButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bunifuImageButton2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (Label_Sign.Text == "Sign In")
+            {
+                Panel_Left.Left -= 10;
+                Panel_Right.Left -= 10;
+                if(Panel_Left.Left <= -458)
+                {
+                    timer1.Stop();
+                }
+            }
+            else if (Label_Sign.Text == "Sign Up")
+            {
+                Panel_Left.Left += 10;
+                Panel_Right.Left += 10;
+                if (Panel_Left.Left >= 0)
+                {
+                    timer1.Stop();
+                }
+            }
+
+            //It's time to test our code.... Lets see :)
+        }
+
+        private void Label_Sign_Click(object sender, EventArgs e)
+        {
+            if(Label_Sign.Text == "Sign Up")
+            {
+                Label_Sign.Text = "Sign In";
+                timer1.Start();
+                this.BackColor = Color.FromArgb(194, 73, 214);
+                Label_Welcome.ForeColor = Color.FromArgb(194, 73, 214);
+            }
+            else if(Label_Sign.Text == "Sign In")
+            {
+                Label_Sign.Text = "Sign Up";
+                timer1.Start();
+                this.BackColor = Color.FromArgb(235, 110, 22);
+                Label_Welcome.ForeColor = Color.FromArgb(235, 110, 22);
+            }
+
+            //Thanks for watching... Happy learning! :)
+        }
+
+        private void BTN_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BTN_Close1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+    }
+}
